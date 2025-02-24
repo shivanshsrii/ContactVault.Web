@@ -1,31 +1,39 @@
 # About
+
 Project Overview
+
 This is a Contact Management Web Application developed using Angular (Frontend) and .NET Web API (Backend). The app allows users to add, view, and delete contacts while displaying them in a structured layout. It uses Bootstrap for styling, ensuring a responsive and modern UI.
 
 🛠️ Tools & Technologies Used
+
 1️⃣ Frontend: Angular
+
 Angular 16 - Framework for building dynamic web applications.
 Bootstrap 5 - Used for styling (buttons, layout, icons).
 TypeScript - Strongly typed programming language for Angular development.
 RxJS (Reactive Extensions for JavaScript) - Handles HTTP requests and async operations.
 Angular Forms (Reactive & Template-Driven) - Used for adding contacts.
 Icons (Bootstrap Icons) - Added icons for UI enhancements (Call & Delete buttons).
+
 2️⃣ Backend: .NET Web API
+
 ASP.NET Core Web API - Manages backend logic, handles CRUD operations.
 Entity Framework Core (EF Core) - ORM for database interactions.
 SQL Server - Stores contact details.
+
 3️⃣ Development Tools
+
 Visual Studio 2022 - Used for .NET backend development.
 Visual Studio Code (VS Code) - Used for Angular frontend development.
 Postman - For testing API endpoints.
 Node.js & NPM - Required for Angular development.
+
 📌 Features of the Application
 ✅ Add Contacts - Users can enter contact details via a form.
 ✅ Display Contacts - List of contacts shown on the left side of the screen.
-✅ Call & Delete Buttons -
-
-Call: Opens the phone dialer with the contact number.
-Delete: Removes the contact from the list.
+✅ Call & Delete Buttons 
+                           Call: Opens the phone dialer with the contact number.
+                           Delete: Removes the contact from the list.
 ✅ Dynamic UI using Bootstrap - Ensures responsive design.
 ✅ TrackBy for Optimization - Used in *ngFor to improve performance.
 
