@@ -5,6 +5,7 @@ import { RouterOutlet } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Contact } from '../models/contacts.model';
 import {FormGroup,FormControl,FormsModule,ReactiveFormsModule} from '@angular/forms';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -16,12 +17,13 @@ import {FormGroup,FormControl,FormsModule,ReactiveFormsModule} from '@angular/fo
 export class AppComponent implements OnInit {
   title = 'ContactVault.web';
   http = inject(HttpClient);
-  contactsForm=new FormGroup({
-    name:new FormControl<string>(''), 
-    email:new FormControl<string | null>(null),
-    phone:new FormControl<string>(''),
-    favorite:new FormControl<boolean>(false),
+  contactsForm = new FormGroup({
+    name: new FormControl<string>('', { nonNullable: true, validators: [Validators.required, Validators.minLength(3)] }),
+    email: new FormControl<string | null>(null, { validators: [Validators.required, Validators.email] }),
+    phone: new FormControl<string>('', { nonNullable: true, validators: [Validators.required, Validators.pattern('^[0-9]{10}$')] }),
+    favorite: new FormControl<boolean>(false),
   });
+  
   contacts: Contact[] = [];
 
   ngOnInit() {
@@ -40,9 +42,13 @@ export class AppComponent implements OnInit {
   return index;
 }
 deleteContact(contact: Contact) {
-  this.contacts = this.contacts.filter(c => c !== contact);
+  const confirmed = window.confirm(`Are you sure you want to delete ${contact.name}?`);
+  this.http.delete(`https://localhost:7078/api/Contacts/${contact.id}`).subscribe(() => {
+    this.contacts = this.contacts.filter(c => c.id !== contact.id);
+  });  
 }
 
+ 
 onSubmit() {
   if (this.contactsForm.valid) {
     this.http.post<Contact>('https://localhost:7078/api/Contacts', this.contactsForm.value)
